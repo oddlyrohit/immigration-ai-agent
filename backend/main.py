@@ -1,11 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
-from datetime import datetime
+from typing import List, Optional, Dict
 import logging
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
 
 # Load environment variables
 load_dotenv()
@@ -13,11 +13,8 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Import OpenAI
-import openai
-
-# USE ENVIRONMENT VARIABLE - SECURE!
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Initialize OpenAI client (NEW syntax)
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI(title="Immigration Advisor API")
 
@@ -103,9 +100,9 @@ async def chat(request: ChatRequest):
             messages.append({"role": msg.role, "content": msg.content})
         messages.append({"role": "user", "content": request.message})
         
-        # Call OpenAI
+        # Call OpenAI (NEW syntax)
         logger.info("Calling OpenAI API...")
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=MODEL,
             messages=messages,
             temperature=0.7,

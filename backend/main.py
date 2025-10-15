@@ -20,9 +20,13 @@ app = FastAPI(title="Immigration Advisor API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://immigration-ai-agent.vercel.app",
+        "https://immigration-ai-agent-git-main-rohits-projects-cd1654ed.vercel.app",
+        "http://localhost:3000"
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 

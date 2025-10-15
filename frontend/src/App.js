@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LandingPage from './LandingPage';
+import ChatInterface from './ChatInterface';
 
 function App() {
+  const [showChat, setShowChat] = useState(false);
+  const [initialMessage, setInitialMessage] = useState('');
+
+  const handleStartChat = (message = '') => {
+    setInitialMessage(message);
+    setShowChat(true);
+  };
+
+  const handleBackToLanding = () => {
+    setShowChat(false);
+    setInitialMessage('');
+  };
+
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Immigration AI Agent</h1>
-      <p>Welcome to your application!</p>
+    <div>
+      {showChat ? (
+        <ChatInterface 
+          initialMessage={initialMessage}
+          onBack={handleBackToLanding}
+        />
+      ) : (
+        <LandingPage onStartChat={handleStartChat} />
+      )}
     </div>
   );
 }

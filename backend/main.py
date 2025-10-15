@@ -4,6 +4,11 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 import logging
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -11,8 +16,8 @@ logger = logging.getLogger(__name__)
 # Import OpenAI
 import openai
 
-# SET YOUR API KEY HERE - REPLACE THIS LINE!
-openai.api_key = "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"
+# USE ENVIRONMENT VARIABLE - SECURE!
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI(title="Immigration Advisor API")
 
@@ -126,4 +131,18 @@ async def chat(request: ChatRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
+```
+
+---
+
+## Step 2: Create a `.gitignore` File in Backend Folder
+
+Create `backend/.gitignore`:
+```
+.env
+__pycache__/
+venv/
+*.pyc
+.DS_Store

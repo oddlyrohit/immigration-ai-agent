@@ -1,8 +1,12 @@
 import React from 'react';
-import LandingPage from './LandingPage';
 
 function App() {
-  return <LandingPage />;
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Immigration AI Agent</h1>
+      <p>Welcome to your application!</p>
+    </div>
+  );
 }
 
 export default App;

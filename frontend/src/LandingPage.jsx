@@ -45,12 +45,12 @@ const LandingPage = () => {
             </h1>
             <p style={styles.heroText}>
               Instant answers, eligibility checks, smart checklists, and live rule updates — 
-              with a seamless handoff to a registered MARA professional when you're ready to lodge.
+              with a seamless handoff to our in-house registered MARA professional when you're ready to lodge.
             </p>
             <div style={styles.searchBox}>
               <input
                 type="text"
-                placeholder="Ask about your visa... e.g. 'Points for 190 in VIC?'"
+                placeholder="Ask anything about your visa... e.g. 'Points for 190 in VIC?'"
                 style={styles.searchInput}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') {
@@ -74,12 +74,13 @@ const LandingPage = () => {
               ))}
             </div>
             <p style={styles.disclaimer}>
-              <strong>Disclaimer:</strong> We are not an immigration agent and do not provide legal 
-              immigration assistance. We connect you with MARA-registered professionals for review & lodgement.
+              <strong>Disclaimer:</strong> This platform is just for your information and does not provide legal 
+              immigration assistance. We connect you with our in-house MARA-registered professionals for review & lodgement.
             </p>
           </div>
           <div style={styles.heroRight}>
             <div style={styles.chartPlaceholder}>
+            <img src="/success-rate-hero.svg" alt="Success Rate Visualization" />
               📊 Success Rate Visualization
             </div>
           </div>

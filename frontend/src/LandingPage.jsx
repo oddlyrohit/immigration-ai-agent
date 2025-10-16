@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChatInterface from './ChatInterface';
 
+const LandingPage = ({ onStartChat, onOpenCalculator }) => {
 const LandingPage = () => {
   const [showChat, setShowChat] = useState(false);
   const [selectedVisa, setSelectedVisa] = useState('');
@@ -105,6 +106,11 @@ const LandingPage = () => {
               Auto-generated document lists, deadlines, and reminders you can tick off as you go.
             </p>
           </div>
+          <div style={styles.feature} onClick={onOpenCalculator}>
+  <div style={styles.featureIcon}>🧮</div>
+  <h3 style={styles.featureTitle}>Points Calculator</h3>
+  <p style={styles.featureText}>Calculate your visa points instantly</p>
+</div>
           <div style={styles.featureCard}>
             <div style={styles.featureIcon}>📢</div>
             <h3 style={styles.featureTitle}>Live Rule Updates</h3>

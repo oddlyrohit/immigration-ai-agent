@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SignInButton } from '@clerk/clerk-react';
 
 const LandingPage = ({ onStartChat, onOpenCalculator }) => {
   const [selectedVisa, setSelectedVisa] = useState('');

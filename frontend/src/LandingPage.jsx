@@ -19,7 +19,9 @@ const LandingPage = ({ onStartChat, onOpenCalculator }) => {
           <nav style={styles.nav}>
             <a href="#why" style={styles.navLink}>Why us</a>
             <a href="#visas" style={styles.navLink}>Visas</a>
-            <button style={styles.signInBtn}>Sign in</button>
+            <SignInButton>
+              <button style={styles.signInBtn}>Sign in</button>
+            </SignInButton>
             <button style={styles.ctaBtn} onClick={() => onStartChat()}>
               Start free assessment
             </button>
@@ -297,68 +299,14 @@ const styles = {
   quickBtn: { background: 'white', border: '1px solid #e5e5e5', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', cursor: 'pointer' },
   disclaimer: { fontSize: '13px', color: '#666', lineHeight: '1.5' },
   heroRight: { display: 'flex', justifyContent: 'center' },
-  
-  // NEW CALCULATOR STYLES
-  calculatorEmbed: { 
-    width: '100%', 
-    background: 'white', 
-    borderRadius: '16px', 
-    padding: '32px', 
-    boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-    border: '2px solid #002664'
-  },
-  calculatorTitle: { 
-    fontSize: '24px', 
-    fontWeight: '700', 
-    color: '#002664', 
-    marginBottom: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px'
-  },
-  calculatorIcon: {
-    fontSize: '32px'
-  },
-  calculatorDesc: {
-    fontSize: '14px',
-    color: '#666',
-    lineHeight: '1.5',
-    marginBottom: '24px'
-  },
-  calculatorBtn: { 
-    width: '100%',
-    background: '#002664', 
-    color: 'white', 
-    border: 'none', 
-    padding: '16px', 
-    borderRadius: '12px', 
-    fontSize: '16px', 
-    fontWeight: '600', 
-    cursor: 'pointer',
-    marginBottom: '24px',
-    transition: 'transform 0.2s'
-  },
-  calculatorFeatures: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '12px',
-    marginBottom: '16px'
-  },
-  calculatorFeature: {
-    fontSize: '14px',
-    color: '#333',
-    display: 'flex',
-    alignItems: 'center',
-    fontWeight: '500'
-  },
-  calculatorNote: {
-    fontSize: '12px',
-    color: '#999',
-    textAlign: 'center',
-    paddingTop: '16px',
-    borderTop: '1px solid #e5e5e5'
-  },
-  
+  calculatorEmbed: { width: '100%', background: 'white', borderRadius: '16px', padding: '32px', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', border: '2px solid #002664' },
+  calculatorTitle: { fontSize: '24px', fontWeight: '700', color: '#002664', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px' },
+  calculatorIcon: { fontSize: '32px' },
+  calculatorDesc: { fontSize: '14px', color: '#666', lineHeight: '1.5', marginBottom: '24px' },
+  calculatorBtn: { width: '100%', background: '#002664', color: 'white', border: 'none', padding: '16px', borderRadius: '12px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', marginBottom: '24px', transition: 'transform 0.2s' },
+  calculatorFeatures: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' },
+  calculatorFeature: { fontSize: '14px', color: '#333', display: 'flex', alignItems: 'center', fontWeight: '500' },
+  calculatorNote: { fontSize: '12px', color: '#999', textAlign: 'center', paddingTop: '16px', borderTop: '1px solid #e5e5e5' },
   section: { maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' },
   sectionTitle: { fontSize: '36px', fontWeight: '700', textAlign: 'center', marginBottom: '48px' },
   features: { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '24px' },

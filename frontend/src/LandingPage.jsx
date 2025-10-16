@@ -71,9 +71,32 @@ const LandingPage = ({ onStartChat, onOpenCalculator }) => {
               immigration assistance. We connect you with our in-house MARA-registered professionals for review & lodgement.
             </p>
           </div>
+          
+          {/* Calculator Card in Hero */}
           <div style={styles.heroRight}>
-            <div style={styles.chartPlaceholder}>
-              <img src="/success-rate-hero.svg" alt="Success Rate Visualization" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
+            <div style={styles.calculatorEmbed}>
+              <div style={styles.calculatorTitle}>
+                <span style={styles.calculatorIcon}>🧮</span>
+                Quick Points Check
+              </div>
+              <p style={styles.calculatorDesc}>
+                Calculate your eligibility points for Australian skilled migration visas instantly
+              </p>
+              <button 
+                style={styles.calculatorBtn} 
+                onClick={onOpenCalculator}
+              >
+                Calculate Your Visa Points →
+              </button>
+              <div style={styles.calculatorFeatures}>
+                <div style={styles.calculatorFeature}>✓ Age & Education</div>
+                <div style={styles.calculatorFeature}>✓ Work Experience</div>
+                <div style={styles.calculatorFeature}>✓ English Proficiency</div>
+                <div style={styles.calculatorFeature}>✓ Instant Results</div>
+              </div>
+              <div style={styles.calculatorNote}>
+                Based on Subclass 189 visa criteria
+              </div>
             </div>
           </div>
         </div>
@@ -273,7 +296,68 @@ const styles = {
   quickBtn: { background: 'white', border: '1px solid #e5e5e5', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', cursor: 'pointer' },
   disclaimer: { fontSize: '13px', color: '#666', lineHeight: '1.5' },
   heroRight: { display: 'flex', justifyContent: 'center' },
-  chartPlaceholder: { width: '100%', height: '300px', background: 'white', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' },
+  
+  // NEW CALCULATOR STYLES
+  calculatorEmbed: { 
+    width: '100%', 
+    background: 'white', 
+    borderRadius: '16px', 
+    padding: '32px', 
+    boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+    border: '2px solid #002664'
+  },
+  calculatorTitle: { 
+    fontSize: '24px', 
+    fontWeight: '700', 
+    color: '#002664', 
+    marginBottom: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px'
+  },
+  calculatorIcon: {
+    fontSize: '32px'
+  },
+  calculatorDesc: {
+    fontSize: '14px',
+    color: '#666',
+    lineHeight: '1.5',
+    marginBottom: '24px'
+  },
+  calculatorBtn: { 
+    width: '100%',
+    background: '#002664', 
+    color: 'white', 
+    border: 'none', 
+    padding: '16px', 
+    borderRadius: '12px', 
+    fontSize: '16px', 
+    fontWeight: '600', 
+    cursor: 'pointer',
+    marginBottom: '24px',
+    transition: 'transform 0.2s'
+  },
+  calculatorFeatures: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '12px',
+    marginBottom: '16px'
+  },
+  calculatorFeature: {
+    fontSize: '14px',
+    color: '#333',
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: '500'
+  },
+  calculatorNote: {
+    fontSize: '12px',
+    color: '#999',
+    textAlign: 'center',
+    paddingTop: '16px',
+    borderTop: '1px solid #e5e5e5'
+  },
+  
   section: { maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' },
   sectionTitle: { fontSize: '36px', fontWeight: '700', textAlign: 'center', marginBottom: '48px' },
   features: { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '24px' },

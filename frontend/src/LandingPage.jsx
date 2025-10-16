@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
-import ChatInterface from './ChatInterface';
 
 const LandingPage = ({ onStartChat, onOpenCalculator }) => {
-const LandingPage = () => {
-  const [showChat, setShowChat] = useState(false);
   const [selectedVisa, setSelectedVisa] = useState('');
-
-  if (showChat) {
-    return <ChatInterface initialMessage={selectedVisa} onBack={() => setShowChat(false)} />;
-  }
 
   return (
     <div style={styles.container}>
@@ -26,7 +19,7 @@ const LandingPage = () => {
             <a href="#why" style={styles.navLink}>Why us</a>
             <a href="#visas" style={styles.navLink}>Visas</a>
             <button style={styles.signInBtn}>Sign in</button>
-            <button style={styles.ctaBtn} onClick={() => setShowChat(true)}>
+            <button style={styles.ctaBtn} onClick={() => onStartChat()}>
               Start free assessment
             </button>
           </nav>
@@ -45,7 +38,7 @@ const LandingPage = () => {
               <span style={styles.heroHighlight}>Australian visas</span>
             </h1>
             <p style={styles.heroText}>
-              Instant answers, eligibility checks, smart checklists, and live rule updates — 
+              Instant answers, eligibility checks, smart checklists, and live rule updates – 
               with a seamless handoff to our in-house registered MARA professional when you're ready to lodge.
             </p>
             <div style={styles.searchBox}>
@@ -55,12 +48,11 @@ const LandingPage = () => {
                 style={styles.searchInput}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') {
-                    setSelectedVisa(e.target.value);
-                    setShowChat(true);
+                    onStartChat(e.target.value);
                   }
                 }}
               />
-              <button style={styles.askBtn} onClick={() => setShowChat(true)}>Ask</button>
+              <button style={styles.askBtn} onClick={() => onStartChat()}>Ask</button>
             </div>
             <div style={styles.quickQuestions}>
               {['Am I eligible for subclass 189?', 'What points do I need for 190 VIC?', 
@@ -68,7 +60,7 @@ const LandingPage = () => {
                 <button
                   key={i}
                   style={styles.quickBtn}
-                  onClick={() => { setSelectedVisa(q); setShowChat(true); }}
+                  onClick={() => onStartChat(q)}
                 >
                   {q}
                 </button>
@@ -81,8 +73,7 @@ const LandingPage = () => {
           </div>
           <div style={styles.heroRight}>
             <div style={styles.chartPlaceholder}>
-            <img src="/success-rate-hero.svg" alt="Success Rate Visualization" />
-              📊 Success Rate Visualization
+              <img src="/success-rate-hero.svg" alt="Success Rate Visualization" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
             </div>
           </div>
         </div>
@@ -100,19 +91,19 @@ const LandingPage = () => {
             </p>
           </div>
           <div style={styles.featureCard}>
-            <div style={styles.featureIcon}>✓</div>
+            <div style={styles.featureIcon}>✔</div>
             <h3 style={styles.featureTitle}>Smart Checklists</h3>
             <p style={styles.featureText}>
               Auto-generated document lists, deadlines, and reminders you can tick off as you go.
             </p>
           </div>
-          <div style={styles.feature} onClick={onOpenCalculator}>
-  <div style={styles.featureIcon}>🧮</div>
-  <h3 style={styles.featureTitle}>Points Calculator</h3>
-  <p style={styles.featureText}>Calculate your visa points instantly</p>
-</div>
+          <div style={{...styles.featureCard, cursor: 'pointer'}} onClick={onOpenCalculator}>
+            <div style={styles.featureIcon}>🧮</div>
+            <h3 style={styles.featureTitle}>Points Calculator</h3>
+            <p style={styles.featureText}>Calculate your visa points instantly</p>
+          </div>
           <div style={styles.featureCard}>
-            <div style={styles.featureIcon}>📢</div>
+            <div style={styles.featureIcon}>🔔</div>
             <h3 style={styles.featureTitle}>Live Rule Updates</h3>
             <p style={styles.featureText}>
               Keep pace with Home Affairs notices, state nomination changes, and policy tweaks.
@@ -138,7 +129,7 @@ const LandingPage = () => {
             { icon: '🏢', title: 'Business Visas', desc: 'Guides • Checklists • FAQs' },
             { icon: '❤️', title: 'Partner Visas', desc: 'Guides • Checklists • FAQs' }
           ].map((visa, i) => (
-            <div key={i} style={styles.visaCard} onClick={() => { setSelectedVisa(visa.title); setShowChat(true); }}>
+            <div key={i} style={styles.visaCard} onClick={() => onStartChat(`Tell me about ${visa.title}`)}>
               <div style={styles.visaIcon}>{visa.icon}</div>
               <h3 style={styles.visaTitle}>{visa.title}</h3>
               <p style={styles.visaDesc}>{visa.desc}</p>
@@ -153,13 +144,13 @@ const LandingPage = () => {
         <div style={styles.threeCol}>
           <div style={styles.colCard}>
             <h3 style={styles.colTitle}>Pathway Planner</h3>
-            <h4 style={styles.colSubtitle}>From student to PR — see your options</h4>
+            <h4 style={styles.colSubtitle}>From student to PR – see your options</h4>
             <ul style={styles.colList}>
               <li>Points estimator for 189/190/491</li>
               <li>State vs. demand signals</li>
               <li>Risk flags & alternatives</li>
             </ul>
-            <button style={styles.colBtn}>Try the planner →</button>
+            <button style={styles.colBtn} onClick={onOpenCalculator}>Try the planner →</button>
           </div>
           <div style={styles.colCard}>
             <h3 style={styles.colTitle}>Compliance</h3>
@@ -285,7 +276,7 @@ const styles = {
   chartPlaceholder: { width: '100%', height: '300px', background: 'white', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' },
   section: { maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' },
   sectionTitle: { fontSize: '36px', fontWeight: '700', textAlign: 'center', marginBottom: '48px' },
-  features: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '32px' },
+  features: { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '24px' },
   featureCard: { textAlign: 'center' },
   featureIcon: { width: '60px', height: '60px', background: '#002664', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: '28px', color: 'white' },
   featureTitle: { fontSize: '20px', fontWeight: '600', marginBottom: '12px' },
